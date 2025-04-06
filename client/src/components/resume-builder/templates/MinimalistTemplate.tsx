@@ -285,6 +285,18 @@ export default function MinimalistTemplate({ resumeData, colorScheme }: Minimali
                 {cert.credentialID && (
                   <p className="text-xs text-neutral-600">ID: {cert.credentialID}</p>
                 )}
+                {cert.certificateUrl && (
+                  <p className="text-xs mt-1">
+                    <a 
+                      href={cert.certificateUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      View Certificate
+                    </a>
+                  </p>
+                )}
               </div>
             ))}
           </div>

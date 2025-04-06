@@ -5,7 +5,7 @@ import {
   splitSkillsString,
   AVAILABLE_COLORS
 } from "@/lib/utils";
-import { Mail, Phone, MapPin, Link, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Link, Globe, Github } from "lucide-react";
 
 interface ModernTemplateProps {
   resumeData: ResumeData;
@@ -13,7 +13,17 @@ interface ModernTemplateProps {
 }
 
 export default function ModernTemplate({ resumeData, colorScheme }: ModernTemplateProps) {
-  const { personalInfo, experience, education, skills } = resumeData;
+  const { 
+    personalInfo, 
+    experience, 
+    education, 
+    skills,
+    projects,
+    certifications,
+    achievements,
+    languages,
+    volunteer 
+  } = resumeData;
   
   const colorValue = AVAILABLE_COLORS.find(c => c.id === colorScheme)?.value || '#0891B2';
   
@@ -62,6 +72,13 @@ export default function ModernTemplate({ resumeData, colorScheme }: ModernTempla
             <div className="flex items-center">
               <Globe className="h-4 w-4 mr-1 opacity-80" />
               {personalInfo.website}
+            </div>
+          )}
+          
+          {personalInfo.github && (
+            <div className="flex items-center">
+              <Github className="h-4 w-4 mr-1 opacity-80" />
+              {personalInfo.github}
             </div>
           )}
         </div>
@@ -137,8 +154,137 @@ export default function ModernTemplate({ resumeData, colorScheme }: ModernTempla
           </div>
         )}
         
+        {/* Projects Section */}
+        {projects && projects.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-4 uppercase tracking-wider border-b pb-1" style={{ color: colorValue }}>
+              Projects
+            </h2>
+            
+            {projects.map((project, index) => (
+              <div key={project.id || index} className={index !== projects.length - 1 ? "mb-5" : ""}>
+                <div className="flex flex-wrap justify-between">
+                  <div>
+                    <h3 className="font-semibold text-neutral-800">{project.title}</h3>
+                    <p className="text-neutral-600 mb-1 italic text-sm">Technologies: {project.technologies}</p>
+                  </div>
+                  {project.startDate && (
+                    <span className="text-neutral-500 text-sm font-medium" style={{ color: colorValue }}>
+                      {formatDateRange(project.startDate, project.endDate)}
+                    </span>
+                  )}
+                </div>
+                
+                {project.link && (
+                  <p className="text-sm text-blue-600 mb-1">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer">{project.link}</a>
+                  </p>
+                )}
+                
+                <ul className="mt-2 space-y-1">
+                  {createBulletPoints(project.description).map((bullet, i) => (
+                    <li key={i} className="text-neutral-700 text-sm flex items-start">
+                      <span className="mr-2 text-lg" style={{ color: colorValue }}>•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {/* Certifications Section */}
+        {certifications && certifications.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-4 uppercase tracking-wider border-b pb-1" style={{ color: colorValue }}>
+              Certifications
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {certifications.map((cert, index) => (
+                <div key={cert.id || index} className="bg-gray-50 p-3 rounded">
+                  <h3 className="font-medium text-neutral-800">{cert.name}</h3>
+                  <p className="text-neutral-600 text-sm">
+                    {cert.issuer}
+                    {cert.date && <span> • {cert.date}</span>}
+                  </p>
+                  {cert.credentialID && (
+                    <p className="text-sm text-neutral-500 mt-1">ID: {cert.credentialID}</p>
+                  )}
+                  {cert.certificateUrl && (
+                    <p className="text-sm text-blue-600 mt-2">
+                      <a 
+                        href={cert.certificateUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center"
+                      >
+                        <span className="mr-1">View Certificate</span>
+                        <Link className="h-3 w-3" />
+                      </a>
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Achievements Section */}
+        {achievements && achievements.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-4 uppercase tracking-wider border-b pb-1" style={{ color: colorValue }}>
+              Achievements
+            </h2>
+            
+            <ul className="space-y-2">
+              {achievements.map((achievement, index) => (
+                <li key={achievement.id || index} className="bg-gray-50 p-3 rounded">
+                  <div className="flex justify-between">
+                    <h3 className="font-medium text-neutral-800">{achievement.title}</h3>
+                    {achievement.date && <span className="text-neutral-500 text-sm">{achievement.date}</span>}
+                  </div>
+                  {achievement.description && (
+                    <p className="text-sm text-neutral-700 mt-1">{achievement.description}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
+        {/* Volunteer Experience Section */}
+        {volunteer && volunteer.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-4 uppercase tracking-wider border-b pb-1" style={{ color: colorValue }}>
+              Volunteer Experience
+            </h2>
+            
+            {volunteer.map((vol, index) => (
+              <div key={vol.id || index} className={index !== volunteer.length - 1 ? "mb-4" : ""}>
+                <div className="flex flex-wrap justify-between">
+                  <div>
+                    <h3 className="font-semibold text-neutral-800">{vol.role}</h3>
+                    <p className="text-neutral-600 mb-1">{vol.organization}</p>
+                  </div>
+                  {vol.startDate && (
+                    <span className="text-neutral-500 text-sm font-medium" style={{ color: colorValue }}>
+                      {formatDateRange(vol.startDate, vol.endDate)}
+                    </span>
+                  )}
+                </div>
+                
+                {vol.description && (
+                  <p className="text-sm text-neutral-700 mt-1">{vol.description}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+        
         {/* Skills Section */}
-        <div>
+        <div className="mb-6">
           <h2 className="text-lg font-semibold mb-3 uppercase tracking-wider border-b pb-1" style={{ color: colorValue }}>
             Skills
           </h2>
@@ -177,8 +323,49 @@ export default function ModernTemplate({ resumeData, colorScheme }: ModernTempla
                 </div>
               </div>
             )}
+            
+            {skills.tools && (
+              <div>
+                <h3 className="font-medium text-neutral-800 mb-2">Tools</h3>
+                <div className="flex flex-wrap gap-2">
+                  {splitSkillsString(skills.tools).map((tool, index) => (
+                    <span 
+                      key={index} 
+                      className="px-3 py-1 rounded-full text-xs"
+                      style={{ backgroundColor: `${colorValue}15`, color: colorValue }}
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
+        
+        {/* Languages Section */}
+        {languages && languages.length > 0 && (
+          <div>
+            <h2 className="text-lg font-semibold mb-3 uppercase tracking-wider border-b pb-1" style={{ color: colorValue }}>
+              Languages
+            </h2>
+            
+            <div className="flex flex-wrap gap-2 mt-3">
+              {languages.map((lang, index) => (
+                <div 
+                  key={lang.id || index} 
+                  className="px-4 py-2 rounded"
+                  style={{ backgroundColor: `${colorValue}10` }}
+                >
+                  <span className="font-medium text-neutral-800">{lang.name}</span>
+                  {lang.proficiency && (
+                    <span className="text-neutral-600 text-sm ml-1">({lang.proficiency})</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ export default function CertificationsForm({ certifications, onChange }: Certifi
       date: "",
       expiryDate: "",
       credentialID: "",
+      certificateUrl: "",
     },
   });
   
@@ -54,6 +55,7 @@ export default function CertificationsForm({ certifications, onChange }: Certifi
       date: certification.date || "",
       expiryDate: certification.expiryDate || "",
       credentialID: certification.credentialID || "",
+      certificateUrl: certification.certificateUrl || "",
     });
   };
   
@@ -159,6 +161,24 @@ export default function CertificationsForm({ certifications, onChange }: Certifi
               )}
             />
             
+            <FormField
+              control={form.control}
+              name="certificateUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Certificate URL</FormLabel>
+                  <FormControl>
+                    <Input 
+                      placeholder="https://www.example.com/certificate/123" 
+                      {...field} 
+                      type="url"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
             <div className="flex justify-between">
               <Button
                 type="button"
@@ -201,6 +221,18 @@ export default function CertificationsForm({ certifications, onChange }: Certifi
                     </p>
                     {certification.credentialID && (
                       <p className="text-xs mt-1">Credential ID: {certification.credentialID}</p>
+                    )}
+                    {certification.certificateUrl && (
+                      <p className="text-xs mt-1">
+                        <a 
+                          href={certification.certificateUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline"
+                        >
+                          View Certificate
+                        </a>
+                      </p>
                     )}
                   </div>
                   

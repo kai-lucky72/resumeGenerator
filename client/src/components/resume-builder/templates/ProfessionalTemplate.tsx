@@ -212,6 +212,13 @@ export default function ProfessionalTemplate({ resumeData, colorScheme }: Profes
               {cert.credentialID && (
                 <p className="text-sm text-neutral-600">ID: {cert.credentialID}</p>
               )}
+              {cert.certificateUrl && (
+                <p className="text-sm text-blue-600">
+                  <a href={cert.certificateUrl} target="_blank" rel="noopener noreferrer">
+                    View Certificate
+                  </a>
+                </p>
+              )}
             </div>
           ))}
         </div>

@@ -73,6 +73,7 @@ export const certificationSchema = z.object({
   date: z.string().optional(),
   expiryDate: z.string().optional(),
   credentialID: z.string().optional(),
+  certificateUrl: z.string().url("Invalid URL format").optional(),
 });
 
 // Achievement/Award schema for zod validation
@@ -120,6 +121,7 @@ export const personalInfoSchema = z.object({
   github: z.string().optional(), // Added GitHub field
   website: z.string().optional(),
   summary: z.string().min(1, "Professional summary is required"),
+  photo: z.string().optional(), // Profile photo (base64 encoded)
 });
 
 // Full resume data schema
