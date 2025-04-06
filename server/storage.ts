@@ -63,9 +63,21 @@ export class MemStorage implements IStorage {
   async createResume(insertResume: InsertResume): Promise<Resume> {
     const id = this.resumeIdCounter++;
     const now = new Date().toISOString();
+    // Make sure userId is never undefined, set to null if it's not provided
+    const userId = insertResume.userId === undefined ? null : insertResume.userId;
+    
+    // Set default values for template and color if they're undefined
+    const template = insertResume.template || 'professional';
+    const color = insertResume.color || 'indigo';
+    
+    // Extract only the properties we need to avoid carrying over any undefined values
     const resume: Resume = { 
-      ...insertResume, 
       id,
+      name: insertResume.name,
+      data: insertResume.data,
+      userId: userId,
+      template: template,
+      color: color,
       createdAt: now,
       updatedAt: now
     };
@@ -77,10 +89,22 @@ export class MemStorage implements IStorage {
     const resume = this.resumes.get(id);
     if (!resume) return undefined;
 
+    // Prepare the updates with proper type handling
+    const updates: Partial<Resume> = {};
+    
+    // Only copy over properties that are defined or have default values
+    if ('name' in data) updates.name = data.name;
+    if ('data' in data) updates.data = data.data;
+    if ('userId' in data) updates.userId = data.userId === undefined ? null : data.userId;
+    if ('template' in data) updates.template = data.template || 'professional';
+    if ('color' in data) updates.color = data.color || 'indigo';
+    
+    // Update the timestamp
+    updates.updatedAt = new Date().toISOString();
+    
     const updatedResume: Resume = {
       ...resume,
-      ...data,
-      updatedAt: new Date().toISOString()
+      ...updates
     };
     
     this.resumes.set(id, updatedResume);
