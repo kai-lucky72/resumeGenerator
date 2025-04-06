@@ -52,14 +52,21 @@ export const defaultResumeData = {
     phone: '',
     location: '',
     linkedin: '',
+    github: '',
     website: '',
     summary: ''
   },
   experience: [],
   education: [],
+  projects: [],
+  certifications: [],
+  achievements: [],
+  languages: [],
+  volunteer: [],
   skills: {
     technical: '',
-    soft: ''
+    soft: '',
+    tools: ''
   }
 };
 

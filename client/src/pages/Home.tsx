@@ -8,6 +8,11 @@ import PersonalInfoForm from "@/components/resume-builder/PersonalInfoForm";
 import ExperienceForm from "@/components/resume-builder/ExperienceForm";
 import EducationForm from "@/components/resume-builder/EducationForm";
 import SkillsForm from "@/components/resume-builder/SkillsForm";
+import ProjectsForm from "@/components/resume-builder/ProjectsForm";
+import CertificationsForm from "@/components/resume-builder/CertificationsForm";
+import AchievementsForm from "@/components/resume-builder/AchievementsForm";
+import LanguagesForm from "@/components/resume-builder/LanguagesForm";
+import VolunteerForm from "@/components/resume-builder/VolunteerForm";
 import TemplateSelector from "@/components/resume-builder/TemplateSelector";
 import ColorSelector from "@/components/resume-builder/ColorSelector";
 import ResumePreview from "@/components/resume-builder/ResumePreview";
@@ -213,6 +218,31 @@ function Home() {
             <SkillsForm
               skills={resumeData.skills}
               onChange={(skills) => updateResumeData({ skills })}
+            />
+            
+            <ProjectsForm
+              projects={resumeData.projects || []}
+              onChange={(projects) => updateResumeData({ projects })}
+            />
+            
+            <CertificationsForm
+              certifications={resumeData.certifications || []}
+              onChange={(certifications) => updateResumeData({ certifications })}
+            />
+            
+            <AchievementsForm
+              achievements={resumeData.achievements || []}
+              onChange={(achievements) => updateResumeData({ achievements })}
+            />
+            
+            <LanguagesForm
+              languages={resumeData.languages || []}
+              onChange={(languages) => updateResumeData({ languages })}
+            />
+            
+            <VolunteerForm
+              volunteers={resumeData.volunteer || []}
+              onChange={(volunteer) => updateResumeData({ volunteer })}
             />
           </div>
 

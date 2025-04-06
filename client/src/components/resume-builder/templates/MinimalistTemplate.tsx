@@ -5,7 +5,7 @@ import {
   splitSkillsString,
   AVAILABLE_COLORS
 } from "@/lib/utils";
-import { Mail, Phone, MapPin, Link, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Link, Globe, Github } from "lucide-react";
 
 interface MinimalistTemplateProps {
   resumeData: ResumeData;
@@ -13,7 +13,17 @@ interface MinimalistTemplateProps {
 }
 
 export default function MinimalistTemplate({ resumeData, colorScheme }: MinimalistTemplateProps) {
-  const { personalInfo, experience, education, skills } = resumeData;
+  const { 
+    personalInfo, 
+    experience, 
+    education, 
+    skills, 
+    projects, 
+    certifications, 
+    achievements, 
+    languages, 
+    volunteer 
+  } = resumeData;
   
   const colorValue = AVAILABLE_COLORS.find(c => c.id === colorScheme)?.value || '#374151';
   
@@ -66,6 +76,13 @@ export default function MinimalistTemplate({ resumeData, colorScheme }: Minimali
               </div>
             )}
             
+            {personalInfo.github && (
+              <div className="flex items-center">
+                <Github className="h-3 w-3 mr-2 opacity-80" />
+                <span className="text-xs">{personalInfo.github}</span>
+              </div>
+            )}
+            
             {personalInfo.website && (
               <div className="flex items-center">
                 <Globe className="h-3 w-3 mr-2 opacity-80" />
@@ -94,6 +111,19 @@ export default function MinimalistTemplate({ resumeData, colorScheme }: Minimali
             </div>
           )}
           
+          {skills.tools && (
+            <div className="mb-4">
+              <h3 className="text-xs font-medium mb-2 opacity-90">Tools</h3>
+              <div className="space-y-1">
+                {splitSkillsString(skills.tools).map((tool, index) => (
+                  <p key={index} className="text-xs">
+                    {tool}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+          
           {skills.soft && (
             <div>
               <h3 className="text-xs font-medium mb-2 opacity-90">Professional</h3>
@@ -101,6 +131,19 @@ export default function MinimalistTemplate({ resumeData, colorScheme }: Minimali
                 {splitSkillsString(skills.soft).map((skill, index) => (
                   <p key={index} className="text-xs">
                     {skill}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {languages && languages.length > 0 && (
+            <div className="mt-4">
+              <h3 className="text-xs font-medium mb-2 opacity-90">Languages</h3>
+              <div className="space-y-1">
+                {languages.map((lang, index) => (
+                  <p key={index} className="text-xs">
+                    {lang.name} {lang.proficiency && `- ${lang.proficiency}`}
                   </p>
                 ))}
               </div>
@@ -156,7 +199,7 @@ export default function MinimalistTemplate({ resumeData, colorScheme }: Minimali
         
         {/* Education Section */}
         {education.length > 0 && (
-          <div>
+          <div className="mb-6">
             <h2 className="text-lg font-semibold mb-3" style={{ color: colorValue }}>
               Education
             </h2>
@@ -176,6 +219,121 @@ export default function MinimalistTemplate({ resumeData, colorScheme }: Minimali
                 
                 {edu.description && (
                   <p className="text-xs text-neutral-700 mt-1">{edu.description}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {/* Projects Section */}
+        {projects && projects.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-3" style={{ color: colorValue }}>
+              Projects
+            </h2>
+            
+            {projects.map((project, index) => (
+              <div key={project.id || index} className={index !== projects.length - 1 ? "mb-4" : ""}>
+                <div className="flex flex-wrap justify-between mb-1">
+                  <h3 className="font-medium text-neutral-800">{project.title}</h3>
+                  {project.startDate && (
+                    <span className="text-neutral-500 text-xs">
+                      {formatDateRange(project.startDate, project.endDate)}
+                    </span>
+                  )}
+                </div>
+                
+                <p className="text-neutral-600 text-xs mb-1">
+                  <span className="italic">Technologies: {project.technologies}</span>
+                </p>
+                
+                {project.link && (
+                  <p className="text-xs text-blue-600 mb-1">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer">{project.link}</a>
+                  </p>
+                )}
+                
+                <ul className="space-y-1 mt-1">
+                  {createBulletPoints(project.description).map((bullet, i) => (
+                    <li key={i} className="text-neutral-700 text-xs flex items-start">
+                      <span className="mr-2">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {/* Certifications Section */}
+        {certifications && certifications.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-3" style={{ color: colorValue }}>
+              Certifications
+            </h2>
+            
+            {certifications.map((cert, index) => (
+              <div key={cert.id || index} className={index !== certifications.length - 1 ? "mb-2" : ""}>
+                <div className="flex flex-wrap justify-between mb-1">
+                  <h3 className="font-medium text-neutral-800 text-sm">{cert.name}</h3>
+                  {cert.date && (
+                    <span className="text-neutral-500 text-xs">{cert.date}</span>
+                  )}
+                </div>
+                <p className="text-neutral-700 text-xs">{cert.issuer}</p>
+                {cert.credentialID && (
+                  <p className="text-xs text-neutral-600">ID: {cert.credentialID}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {/* Achievements Section */}
+        {achievements && achievements.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-3" style={{ color: colorValue }}>
+              Achievements
+            </h2>
+            
+            <ul className="space-y-1">
+              {achievements.map((achievement, index) => (
+                <li key={achievement.id || index} className="text-neutral-700 text-xs flex items-start">
+                  <span className="mr-2">•</span>
+                  <div>
+                    <span className="font-medium">{achievement.title}</span>
+                    {achievement.date && <span className="text-neutral-500"> ({achievement.date})</span>}
+                    {achievement.description && <span>: {achievement.description}</span>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
+        {/* Volunteer Experience Section */}
+        {volunteer && volunteer.length > 0 && (
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold mb-3" style={{ color: colorValue }}>
+              Volunteer Experience
+            </h2>
+            
+            {volunteer.map((vol, index) => (
+              <div key={vol.id || index} className={index !== volunteer.length - 1 ? "mb-4" : ""}>
+                <div className="flex flex-wrap justify-between mb-1">
+                  <h3 className="font-medium text-neutral-800 text-sm">{vol.role}</h3>
+                  {vol.startDate && (
+                    <span className="text-neutral-500 text-xs">
+                      {formatDateRange(vol.startDate, vol.endDate)}
+                    </span>
+                  )}
+                </div>
+                
+                <p className="text-neutral-700 text-xs mb-1">{vol.organization}</p>
+                
+                {vol.description && (
+                  <p className="text-xs text-neutral-700">{vol.description}</p>
                 )}
               </div>
             ))}

@@ -1,0 +1,120 @@
+A well-detailed, professional resume—especially when applying for technical roles or opportunities like internships, jobs, or scholarships—must be clear, concise, and impactful. Below is a structured breakdown of what must be included in a powerful resume:
+
+✅ 1. Contact Information (Top of the page)
+Full name (bold and prominent)
+
+Professional email (e.g., firstname.lastname@gmail.com)
+
+Phone number
+
+LinkedIn profile or GitHub (for tech roles)
+
+Portfolio or website (if applicable)
+
+✅ 2. Professional Summary / Objective (2–3 lines max)
+A focused pitch that summarizes who you are, what you bring, and what you're seeking.
+
+Example:
+“Final-year Computer Science student at Rwanda Coding Academy with hands-on experience in AI, cybersecurity, and backend development. Seeking a dynamic role to contribute to cutting-edge tech solutions.”
+
+✅ 3. Skills Section
+Bullet list or categorized format (technical, soft skills, tools)
+
+Examples:
+
+Programming: Java, Python, JavaScript
+
+Frameworks: Spring Boot, Jakarta EE
+
+Tools: Git, Docker, IntelliJ, VS Code
+
+Soft Skills: Leadership, Teamwork, Communication
+
+✅ 4. Education
+Include:
+
+School name (e.g., Rwanda Coding Academy)
+
+Degree/Program (e.g., Advanced Level in Software Engineering)
+
+Expected graduation year
+
+Key achievements (top performer, projects, GPA if good)
+
+✅ 5. Projects (Core for students or entry-level applicants)
+Each project must have:
+
+Title
+
+Tools/Technologies used
+
+Short description
+
+Impact/result
+
+Example:
+
+vbnet
+Copy
+Edit
+🛡️ AI-Powered Chatbot for File Organization
+Tools: Java, Gemini API, SQLite, NLP
+Developed an intelligent system to organize files/folders and respond to queries with stored memory. Improved task efficiency by 40%.
+✅ 6. Work Experience / Internships (If any)
+Include:
+
+Job title
+
+Organization name
+
+Dates (e.g., Jan 2024 – Mar 2024)
+
+Responsibilities (action verbs + results)
+
+Example:
+
+pgsql
+Copy
+Edit
+💼 Backend Intern – RwandaTech Solutions
+- Built RESTful APIs using Jakarta EE, improving data retrieval speed by 30%
+- Collaborated in a 5-member team to deploy a school management system
+✅ 7. Certifications / Trainings
+Only include relevant or impressive ones:
+
+e.g., “Introduction to Cybersecurity – Cisco”
+
+e.g., “AI for Everyone – Coursera by Andrew Ng”
+
+✅ 8. Achievements / Awards
+Academic or technical competitions
+
+Scholarships, hackathon wins, or publications
+
+Leadership roles
+
+✅ 9. Languages (If relevant)
+Mention both native and additional languages
+
+e.g., Kinyarwanda (native), English (fluent), French (intermediate)
+
+✅ 10. Extra Sections (Optional)
+Volunteer Work
+
+Community Involvement
+
+Hobbies/Interests (only if they support your image)
+
+Example:
+
+Volunteered at Girls in ICT Rwanda to teach Python basics to high school students.
+
+⚠️ Tips to Keep in Mind
+Use active language: Developed, Led, Built, Optimized
+
+Keep it 1 page (max 2 if you're very experienced)
+
+Use a consistent and clean layout (use templates if needed)
+
+Tailor it for each job you apply for (highlight matching skills)
+

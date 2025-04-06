@@ -124,7 +124,7 @@ export default function PersonalInfoForm({ personalInfo, onChange }: PersonalInf
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <FormField
                 control={form.control}
                 name="linkedin"
@@ -133,6 +133,19 @@ export default function PersonalInfoForm({ personalInfo, onChange }: PersonalInf
                     <FormLabel className="text-sm font-medium text-neutral-700">LinkedIn</FormLabel>
                     <FormControl>
                       <Input {...field} placeholder="e.g. linkedin.com/in/johndoe" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="github"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-sm font-medium text-neutral-700">GitHub</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder="e.g. github.com/johndoe" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

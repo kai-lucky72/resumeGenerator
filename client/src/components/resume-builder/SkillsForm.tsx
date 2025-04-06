@@ -79,6 +79,25 @@ export default function SkillsForm({ skills, onChange }: SkillsFormProps) {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="tools"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-medium text-neutral-700">Tools & Technologies</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      placeholder="Git, Docker, VS Code, IntelliJ, etc."
+                      rows={2}
+                    />
+                  </FormControl>
+                  <p className="text-xs text-gray-500 mt-1">Enter tools separated by commas</p>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </form>
         </Form>
       </CardContent>
