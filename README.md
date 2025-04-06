@@ -151,6 +151,8 @@ The resume builder includes all essential sections for a professional resume:
 - High-quality PDF export
 - Print-ready resume formats
 
+## you can access the project via https://resume-generator-915l.onrender.com/
+
 ## 📝 License
 
 This project is open source and available under the MIT License.
