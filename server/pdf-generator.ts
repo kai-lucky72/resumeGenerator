@@ -10,7 +10,7 @@ export const generatePdf = async (html: string): Promise<Buffer> => {
   try {
     // Launch a headless browser
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: true, // Using boolean instead of 'new' string
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
