@@ -29,10 +29,15 @@ Render also offers a generous free tier:
    - Connect your repository
    - Name your service
    - Select "Node" as the environment
-   - Set the build command: `npm run build`
-   - Set the start command: `npm start`
+   - Set the build command: `npm install --include=dev && npm run build`
+   - Set the start command: `npm run start`
    - Select the free plan
    - Click "Create Web Service"
+
+**Important Notes for Render Deployment:**
+- Make sure to use `npm install --include=dev` to include development dependencies, as they're needed for the build process
+- If you encounter errors, check the build logs and make sure all dependencies are installed
+- The application requires puppeteer for PDF generation, which should be included in your package.json
 
 Render provides:
 - Completely free hosting for static sites and small services
