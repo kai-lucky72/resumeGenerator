@@ -119,10 +119,4 @@ export async function registerRoutes(app: Express): Promise<Server> {
   return httpServer;
 }
 
-// Simplified PDF generator function
-// In a real implementation, this would use a library like PDFKit or Puppeteer
-export const generatePdf = (html: string): Promise<Buffer> => {
-  // Here we'd normally use a PDF generation library
-  // For this implementation, we're returning a placeholder
-  return Promise.resolve(Buffer.from("PDF content would go here"));
-};
+// PDF generator function is now imported from pdf-generator.ts
