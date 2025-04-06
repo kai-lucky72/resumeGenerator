@@ -10,7 +10,7 @@ export const generatePdf = async (html: string): Promise<Buffer> => {
   try {
     // Launch a headless browser
     const browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
@@ -41,7 +41,8 @@ export const generatePdf = async (html: string): Promise<Buffer> => {
     // Close the browser
     await browser.close();
     
-    return pdfBuffer;
+    // Explicitly convert to Buffer if needed
+    return Buffer.from(pdfBuffer);
   } catch (error) {
     console.error('Error generating PDF:', error);
     throw new Error('Failed to generate PDF');
