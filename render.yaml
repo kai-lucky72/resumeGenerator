@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: resume-generator
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run start
+    branch: main
+    rootDir: client # change this if your app root is different
